@@ -8,14 +8,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
-import PluginHeaderTitle from 'components/PluginHeaderTitle';
-import PluginHeaderActions from 'components/PluginHeaderActions';
+import PluginHeaderTitle from '../PluginHeaderTitle';
+import PluginHeaderActions from '../PluginHeaderActions';
 
 import styles from './styles.scss';
 
 function PluginHeader({
   actions,
   description,
+  icon,
+  onClickIcon,
   overrideRendering,
   subActions,
   title,
@@ -26,6 +28,8 @@ function PluginHeader({
     <div className={cn(styles.pluginHeader, 'row')}>
       <div className="col-lg-7">
         <PluginHeaderTitle
+          icon={icon}
+          onClickIcon={onClickIcon}
           title={title}
           titleId={titleId}
           description={description}
@@ -45,6 +49,8 @@ function PluginHeader({
 PluginHeader.defaultProps = {
   actions: [],
   description: '',
+  icon: null,
+  onClickIcon: () => {},
   overrideRendering: false,
   subActions: [],
   title: '',
@@ -62,6 +68,8 @@ PluginHeader.propTypes = {
       values: PropTypes.object,
     }),
   ]),
+  icon: PropTypes.string,
+  onClickIcon: PropTypes.func,
   overrideRendering: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
   subActions: PropTypes.array,
   title: PropTypes.oneOfType([
